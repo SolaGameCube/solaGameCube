@@ -1,0 +1,83 @@
+.game-list {
+  max-width: 1400px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.url-cell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toggle-field {
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+}
+
+.toggle-field:hover {
+  background-color: #f0f0f0;
+}
+
+.toggle-field.active {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.toggle-field.inactive {
+  color: #6c757d;
+}
+
+.toggle-field.status-active {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.toggle-field.status-inactive {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}

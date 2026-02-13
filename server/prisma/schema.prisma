@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 用户表 - 钱包地址作为唯一标识
+model User {
+  id           Int        @id @default(autoincrement())
+  walletAddr   String     @unique
+  points       Int        @default(0)
+  avatar       String?    // 头像路径 (1-9.png)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  gamePlays    GamePlay[]
+}
+
+// 游戏表
+model Game {
+  id                  Int        @id @default(autoincrement())
+  name                String
+  icon                String     // 图标 URL
+  url                 String     // 游戏 URL (本地路径或 https)
+  description         String     // 简介
+  shortDesc           String     // 一句话简介
+  orientation         String     @default("landscape") // landscape 或 portrait
+  isBanner            Boolean    @default(false) // 是否在 Banner 推荐
+  isHot               Boolean    @default(false) // 是否热门游戏
+  bannerImage         String?    // Banner 图片
+  isActive            Boolean    @default(true)
+  sortOrder           Int        @default(0)
+  isGameDistribution  Boolean    @default(false) // 是否使用 GameDistribution
+  gameDistributionId  String?    // GameDistribution 游戏 ID
+  sourceUrl           String?    // 源网站 URL
+  htmlFileName        String?    // 生成的 HTML 文件名
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  gamePlays           GamePlay[]
+}
+
+// 游戏记录表
+model GamePlay {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  gameId       Int
+  duration     Int      @default(0) // 游戏时长（秒）
+  earnedPoints Int      @default(0) // 获得的积分
+  adClicks     Int      @default(0) // 广告点击次数
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+  game         Game     @relation(fields: [gameId], references: [id])
+}
+
+// 积分规则配置
+model PointsConfig {
+  id              Int    @id @default(autoincrement())
+  key             String @unique
+  value           String
+  description     String?
+}
+
+// 管理员表
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String   // bcrypt 加密
+  role      String   @default("admin") // admin, super_admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
