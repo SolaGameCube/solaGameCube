@@ -31,6 +31,6 @@ SolaGameCube is a mobile gaming application built for the Solana ecosystem.
 6. Changes to This Policy
 - We may update this policy. Continued use of the app constitutes acceptance of changes.
 
-Contact: @SolaGameCube on X or hoyosdd2002@gmail.com.
+Contact: @SolaGameCube on X or hoyosdd2002 at gmail.com.
 
 This policy is designed to comply with applicable data protection regulations.
